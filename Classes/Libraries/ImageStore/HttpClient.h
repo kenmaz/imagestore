@@ -22,6 +22,7 @@
 - (void)cancel;
 - (void)get:(NSString*)url parameters:(NSDictionary*)params;
 - (void)post:(NSString*)url parameters:(NSDictionary*)params;
+- (void)postMultiPart:(NSString*)url parameters:(NSDictionary*)params;
 
 @end
 
@@ -29,4 +30,16 @@
 @interface NSObject (HttpClientDelegate)
 - (void)httpClientSucceeded:(HttpClient*)sender response:(NSHTTPURLResponse*)response data:(NSData*)data;
 - (void)httpClientFailed:(HttpClient*)sender error:(NSError*)error;
+@end
+
+@interface FilePart : NSObject
+{
+	NSString* filename;
+	NSData* filedata;
+}
+@property(nonatomic, retain) NSString* filename;
+@property(nonatomic, retain) NSData* filedata;
+
+- (id)initWithFilename:(NSString*)aFilename filedata:(NSData*)aFiledata;
+
 @end
