@@ -155,7 +155,7 @@
 	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
 	[req setValue:contentType forHTTPHeaderField:@"Content-type"];
 	
-	NSMutableData* body = [[NSMutableData alloc] init];
+	NSMutableData* body = [[NSMutableData alloc] init] autorelease];
 	[self buildMultiPartBody:body params:params boundary:boundary];
 	[req setHTTPBody:body];	
 	[req setHTTPShouldHandleCookies:YES];
